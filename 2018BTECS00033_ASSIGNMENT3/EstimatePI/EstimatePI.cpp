@@ -2,6 +2,8 @@
 #include <stdio.h> 
 #include <math.h> 
 #include <string.h> 
+#include<omp.h>
+
 #define SEED 35791246 
  
 int main() 
@@ -13,12 +15,10 @@ int main()
    scanf("%d",&niter); 
  
    srand(SEED); 
-    
    double x,y,z;
    
-   #pragma omp parallel for  shared(niter) schedule(static,100) reduction(+: count)
+   #pragma omp parallel for num_threads(8)  shared(niter) reduction(+: count)
    for (int i=0; i<niter; i++) { 
-   
       x = (double)rand()/RAND_MAX; 
       y = (double)rand()/RAND_MAX; 
       
