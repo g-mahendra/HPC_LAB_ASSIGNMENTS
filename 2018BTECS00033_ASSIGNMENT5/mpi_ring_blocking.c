@@ -16,9 +16,6 @@ int main(int argc, char **argv)
         MPI_Recv(&data, 1, MPI_INT, rank - 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
         printf("Process %d received data %d from process %d\n", rank, data, rank - 1);
     }
-    else
-    {
-    }
     MPI_Send(&data, 1, MPI_INT, (rank + 1) % size, 0, MPI_COMM_WORLD);
     printf("process %d sent %d to process %d \n", rank, data, (rank + 1) % size);
     if (rank == 0)
