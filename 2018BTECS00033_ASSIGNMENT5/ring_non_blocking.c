@@ -4,7 +4,7 @@
 
 int main()
 {
-    int numtasks, rank, prev, next, sendVal = 33, recVal, tag1 = 0, tag2 = 1, buf[2];
+    int numtasks, rank, prev, next, sendVal = 3, recVal, tag1 = 0, tag2 = 1, buf[2];
 
     MPI_Request reqs[4];
     MPI_Status stats[4];
@@ -28,6 +28,10 @@ int main()
     MPI_Isend(&sendVal, 1, MPI_INT, next, tag1, MPI_COMM_WORLD, &reqs[3]);
 
     PMPI_Waitall(2, reqs, stats);
+
+    printf("Process %d recieved data %d \n", rank, buf[0]);
+    printf("Process %d recieved data %d \n", rank, buf[1]);
+
     printf("Task %d interacted with taska %d and %d \n", rank, prev, next);
 
     MPI_Finalize();

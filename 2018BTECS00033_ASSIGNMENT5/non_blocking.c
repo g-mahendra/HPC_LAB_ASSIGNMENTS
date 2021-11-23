@@ -8,7 +8,6 @@ int main()
 
     MPI_Init(NULL, NULL);
     MPI_Request reqs[8];
-    MPI_Status stats[8];
     // int tags[2] = {1, 2};
     int rank, size;
     MPI_Comm_size(MPI_COMM_WORLD, &size);
